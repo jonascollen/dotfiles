@@ -1,0 +1,80 @@
+rules:
+- description: IPv4
+  regex: \b(?<!\.)((25[0-5]|(2[0-4]|[0-1]?\d)?\d)\.){3}(25[0-5]|(2[0-4]|[0-1]?\d)?\d)(/\d+)?(?!\.)\b
+  color: f#00ffff
+
+- description: IPv6 (boundaries don't work here as they can be in the start or end of the match, so using lookaheads and lookbehinds instead)
+  regex: (?i)((?<=[\W])|^)(?<!:)(([\da-f]{1,4}:){7}[\da-f]{1,4}|([\da-f]{1,4}:){1,1}(:[\da-f]{1,4}){1,6}|([\da-f]{1,4}:){1,2}(:[\da-f]{1,4}){1,5}|([\da-f]{1,4}:){1,3}(:[\da-f]{1,4}){1,4}|([\da-f]{1,4}:){1,4}(:[\da-f]{1,4}){1,3}|([\da-f]{1,4}:){1,5}(:[\da-f]{1,4}){1,2}|([\da-f]{1,4}:){1,6}(:[\da-f]{1,4})|([\da-f]{1,4}:){1,7}:|:((:[\da-f]{1,4}){1,7}|:)|::(ffff(:0{1,4})?:)?((25[0-5]|(2[0-4]|[0-1]?\d)?\d)\.){3}(25[0-5]|(2[0-4]|[0-1]?\d)?\d)|([\da-f]{1,4}:){1,4}:((25[0-5]|(2[0-4]|[0-1]?\d)?\d)\.){3}(25[0-5]|(2[0-4]|[0-1]?\d)?\d))(%[\da-z]+)?(/\d+)?(?!:)((?=[\W])|$)
+  color: f#ff00ff
+
+- description: MAC addresses
+  regex: (?i)\b((?<!:)([\da-f]{1,2}:){5}[\da-f]{1,2}(?!:)|(?<!\.)([\da-f]{4}\.){2}[\da-f]{4}(?!\.))\b
+  color: f#5f61ad
+
+- description: Date in YYYY-MM-DD, YY-MM-DD, MMM (YYYY|DD), or DD MMM (YYYY)? formats
+  regex: (?i)((?<=[\W])|^)((\d{2}|\d{4})\-((0)?[1-9]|1[0-2])\-(3[0-1]|([1-2]\d)|(0)?[1-9])|(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s(\d{4}|\s\d|(3[0-1]|([0-2]\d)))|((\d|(3[0-1]|([0-2]\d)))\s(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)(\s\d{4})?))((?=[\WT_])|$)
+  color: f#fbec5d
+
+- description: Time in hh:mm:ss.SSSSSS format (sec, msec, and nsec optional)
+  regex: \b((?<!:)((2[0-3])|[0-1]\d):[0-5]\d(:[0-5]\d)?((\.|,)\d{3,6})?(?!:))\b
+  color: f#fbec5d
+
+- description: Generics - Bad
+  regex: (?i)\b(password|abnormal(ly)?|shutdown|down|los(t|s|ing)|err(or(s)?)?|(den(y|ies|ied)?)|reject(ing|ed)?|drop(ped|s)?|(?<!learning )(err\-)?disable(d)?|(?<!arp )(time(d)?(\-)?out)|fail(s|ed|iure)?|disconnect(ed)?|unreachable|invalid|bad|notconnect|unusable|block(ing|ed)?|blk|inaccessible|wrong|collision(s)?|unsynchronized|mismatch|runts|CRC)\b
+  color: f#ff0000
+
+- description: Might need attention
+  regex: (admin-down|reset|act/unsup|dhcp|DHCP|mismatch|notconnect|drops|dropped|runts|CRC|collisions|collision|LRN|learning|listening|LIS|unsynchronized)(Peer\(STP\)|Shr|Edge|pvst|ieee|Bound\(PVST\)|TFTP|Mbgp|LAPB|l2ckt\(\d{1,10}\)|DCE|DTE|passive|\[ANY\]|r|RIB\-failure|discriminator|Standby)(aggregate(d|\/\w*)|atomic\-aggregate|\[V\]|ATTEMPT|INIT|2WAY|EXCHANGE|LOADING|\(global\)|tag|key\-chain|md5|backup\/repair|repair|v2\/D|v2\/SD)(Condition\-map|Advertise\-map|no\-advertise|no\-export|local\-AS|internet)
+  color: f#ffbf00
+
+- description: Generics - Ambigious bad
+  regex: (?i)\b(no(t|pe)?|exit(ed)?|reset((t)?ing)?|discard(ed|ing)?|filter(ed)?|stop(p(ed|ing))?|never|can((')?t|not))\b
+  color: f#865e12
+
+- description: Generics - Not too bad
+  regex: (?i)\b(warning(s)?)\b
+  color: f#ffff00
+
+- description: Generics - Ambigious good
+  regex: (?i)\b(ye(s|a(h)?|p)?|started|running|can|active)\b
+  color: f#085e0b
+
+- description: Generics - Good
+  regex: (?i)\b(up|ok(ay)?|(?<!transceiver )permit(ed|s)?|accept(s|ed)?|enable(d)?|online|succe((ss(ful|fully)?)|ed(ed)?)?|connect(ed)?|reachable|valid|forwarding|synchronized|pass)\b
+  color: f#00ff00
+
+- description: VRF
+  regex: \d{3,10}:\d{2,10}|\d{3,10}:[1-9]
+  color: f#6666ff
+
+- description: Interfaces + Bundles
+  regex: (Bundle|PW)-Ether\d+\.\d*|(Bundle|PW)-Ether\d+|(B|P)E\d+.*?\.\d*|(B|P)E\d+|(Te|TenGigE|Gi|GigabitEthernet|Hu|HundredGigE)\d+/\d*/\d/\d*?\.\d*|(Te|TenGigE|Gi|GigabitEthernet|Hu|HundredGigE)\d+/\d*/\d/\d*|HundredGigE|TenGigE|GigabitEthernet
+  color: f#379efb
+
+- description: Logical interfaces
+  regex: (Lo|Loopback)\d{1,10}|(Tu|Tunnel)\d{1,10}|(Vl|Vlan)\d{1,4}|(BVI)\d{1,10}
+  color: f#82d8e5
+
+- description: Hostname
+  regex: ^.*?#|^.*?>|^.*?]
+  color: f#fdfd96
+
+- description: Customer specific, vrf/vlan/vsi
+  regex: vrf\s\d+|(?:(?:dot1q)[a-zA-Z ]{0,20})([1-9]+[0-9])|vsi\s\d+|dot1q\s\d+|vsi-id\s\d+
+  color: f#fbf637
+
+- description: Metric
+  regex: metric\s\d+
+  color: f#ff33cc
+
+- description: IOS XR Config Removed / rollback
+  regex: ^\-|rollback
+  color: f#ff0000
+
+- description: IOS XR Config Added/Commited
+  regex: ^\+|commit(ted|ting)
+  color: f#00ff00
+
+- description: IOS XR Config Modified
+  regex: ^\<-|^\+>
+  color: f#ffff00
