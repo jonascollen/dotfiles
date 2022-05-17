@@ -1,9 +1,11 @@
 :set commentstring=#%s
 :set background=dark
 
-call plug#begin('~/.vim/plugged')
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
 
-# Workaround as firewall not liking https on scriptserver
+call plug#begin('~/.vim/plugged')
 
 let g:plug_url_format = 'git@github.com:%s.git'
 Plug 'preservim/NERDTree'
@@ -11,9 +13,9 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'arcticicestudio/nord-vim'
-
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Initialize plugin system
 call plug#end()
 
-colorscheme nord
+colorscheme dracula
+

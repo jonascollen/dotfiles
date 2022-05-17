@@ -9,8 +9,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# This is a little wanky but my account on scriptserver does not have sudo rights so everything is installed/compiled locally.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/joco02/services/zsh/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$PATH
+export PATH=$HOME/bin:$HOME/env/bin:/usr/local/bin:$HOME/.local/bin:/home/joco02/services/zsh/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$PATH
 export PATH=$HOME/local/bin:$HOME/services/bin/:$PATH
 export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export MANPATH=$HOME/local/share/man:$MANPATH
@@ -88,6 +87,7 @@ DISABLE_AUTO_TITLE="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting z common-aliases colorize extract zsh-dircolors-nord)
 
+source $(dirname $(gem which colorls))/tab_complete.sh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source $ZSH/oh-my-zsh.sh
 
@@ -117,8 +117,27 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+#alias nso="ssh -p 2024 193.45.38.11"
 alias vi="vim"
 echo -ne '\033]0;NSS02\a'
+
+# Move standard ls
+alias ols="ls"
+# Base formats
+alias ls="colorls -A"           # short, multi-line
+alias ll="colorls -1A"          # list, 1 per line
+alias ld="ll"                   # ^^^, NOTE: Trying to move to this for alternate hand commands
+alias la="colorls -lA"          # list w/ info
+# [d] Sort output with directories first
+alias lsd="ls --sort-dirs"
+alias lld="ll --sort-dirs"
+alias ldd="ld --sort-dirs"
+alias lad="la --sort-dirs"
+# [t] Sort output with recent modified first
+alias lst="ls -t"
+alias llt="ll -t"
+alias ldt="ld -t"
+alias lat="la -t"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
