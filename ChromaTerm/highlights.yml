@@ -137,7 +137,7 @@ rules:
 
 - description: Metric
   regex: metric\s\d+
-  color: f#8be9fd
+  color: f#50fa7b
 
 - description: IOS XR Config Removed / rollback
   regex: ^\-|rollback
