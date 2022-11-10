@@ -85,7 +85,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting z common-aliases colorize extract zsh-dircolors-nord)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting z common-aliases colorize extract zsh-dircolors-nord)
 
 source $(dirname $(gem which colorls))/tab_complete.sh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
@@ -124,15 +124,16 @@ echo -ne '\033]0;NSS02\a'
 # Move standard ls
 alias ols="ls"
 # Base formats
-alias ls="colorls -A"           # short, multi-line
-alias ll="colorls -1A"          # list, 1 per line
-alias ld="ll"                   # ^^^, NOTE: Trying to move to this for alternate hand commands
-alias la="colorls -lA"          # list w/ info
+alias ls="colorls -A --sort-dirs"           # short, multi-line
+alias ll="colorls -1A --sort-dirs"          # list, 1 per line
+alias ld="ll  --sort-dirs"                   # ^^^, NOTE: Trying to move to this for alternate hand commands
+alias la="colorls -lA --sort-dirs"          # list w/ info
+alias lstree="colorls --tree"
 # [d] Sort output with directories first
-alias lsd="ls --sort-dirs"
-alias lld="ll --sort-dirs"
-alias ldd="ld --sort-dirs"
-alias lad="la --sort-dirs"
+#alias lsd="ls --sort-dirs"
+#alias lld="ll --sort-dirs"
+#alias ldd="ld --sort-dirs"
+#alias lad="la --sort-dirs"
 # [t] Sort output with recent modified first
 alias lst="ls -t"
 alias llt="ll -t"

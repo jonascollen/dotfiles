@@ -1,1 +1,2 @@
+eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/half-life.omp.json)"
 echo -ne '\033]0;NSS02\a'

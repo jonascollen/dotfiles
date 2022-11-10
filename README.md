@@ -46,6 +46,8 @@ bind-key -n Bspace send-keys C-h
 Due to a bug in WSL2/Ubuntu DNS stops working if you connect or disconnect a VPN-session in Windows (the DNS-servers are not replaced).
 My workaround was creating two etc/resolv.conf, one pointing to my own DNS and one pointing to my companys internal DNS. I then call a simple python-script with vpn on / off depending of how i'm currently connected.
 
+Update from 2022-11 - Haven't seen this issue for a long time now so think it has been patched in WSL2. Keeping for reference.
+
 ```
 import os
 import sys

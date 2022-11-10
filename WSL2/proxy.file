@@ -1,0 +1,4 @@
+#Saved in /etc/apt/apt.conf.d/proxy.conf
+
+Acquire::http::Proxy "http://<proxy>";
+Acquire::https::Proxy "http://<proxy>";

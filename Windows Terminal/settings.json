@@ -8,6 +8,14 @@
             "keys": "ctrl+v"
         },
         {
+            "command": "duplicateTab",
+            "keys": "ctrl+shift+d"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
             "command": 
             {
                 "action": "sendInput",
@@ -16,12 +24,12 @@
             "keys": "f3"
         },
         {
-            "command": "duplicateTab",
-            "keys": "ctrl+shift+d"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001e"
+            },
+            "keys": "f5"
         },
         {
             "command": "unbound",
@@ -33,23 +41,15 @@
                 "action": "sendInput",
                 "input": "<something>\n"
             },
-            "keys": "f2"
-        },
-        {
-            "command": 
-            {
-                "action": "sendInput",
-                "input": "joco02\n"
-            },
             "keys": "f1"
         },
         {
             "command": 
             {
                 "action": "sendInput",
-                "input": "\u001e"
+                "input": "<something>\n"
             },
-            "keys": "f5"
+            "keys": "f2"
         },
         {
             "command": 
@@ -117,7 +117,7 @@
                 "hidden": false,
                 "historySize": 20000,
                 "name": "Ubuntu",
-                "opacity": 84,
+                "opacity": 65,
                 "source": "Windows.Terminal.Wsl",
                 "startingDirectory": "\\\\wsl$\\Ubuntu\\home\\joco02",
                 "useAcrylic": true
